@@ -39,11 +39,14 @@
 	NSString *title;
 	NSString *fullAddress;
 	NSString *streetNumber;
+    NSString *street;
 	NSString *route;
 	NSString *city;
 	NSString *stateCode;
 	NSString *postalCode;
 	NSString *countryName;
+  	NSString *countryCode;
+    
 	CLLocationCoordinate2D coordinate;
 }
 
@@ -51,10 +54,12 @@
 @property (nonatomic, retain) NSString *fullAddress;
 @property (nonatomic, retain) NSString *streetNumber;
 @property (nonatomic, retain) NSString *route;
+@property (nonatomic, retain) NSString *street;
 @property (nonatomic, retain) NSString *city;
 @property (nonatomic, retain) NSString *stateCode;
 @property (nonatomic, retain) NSString *postalCode;
 @property (nonatomic, retain) NSString *countryName;
+@property (nonatomic, retain) NSString *countryCode;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 
 

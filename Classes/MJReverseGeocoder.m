@@ -70,13 +70,17 @@
 		//get first element as array
 		NSArray *firstResultAddress = [[[resultDict objectForKey:@"results"] objectAtIndex:0] objectForKey:@"address_components"];
 		
-		AddressComponents *resultAddress = [[[AddressComponents alloc] init] autorelease];
+		AddressComponents *resultAddress = [[[AddressComponents alloc] init] autorelease]; 
+        
+        resultAddress.fullAddress = [[[resultDict objectForKey:@"results"] objectAtIndex:0] objectForKey:@"formatted_address"];
 		resultAddress.streetNumber = [AddressComponents addressComponent:@"street_number" inAddressArray:firstResultAddress ofType:@"long_name"];
 		resultAddress.route = [AddressComponents addressComponent:@"route" inAddressArray:firstResultAddress ofType:@"long_name"];
+        resultAddress.street = [NSString stringWithFormat:@"%@ %@%", resultAddress.streetNumber, resultAddress.route]; 
 		resultAddress.city = [AddressComponents addressComponent:@"locality" inAddressArray:firstResultAddress ofType:@"long_name"];
 		resultAddress.stateCode = [AddressComponents addressComponent:@"administrative_area_level_1" inAddressArray:firstResultAddress ofType:@"short_name"];
 		resultAddress.postalCode = [AddressComponents addressComponent:@"postal_code" inAddressArray:firstResultAddress ofType:@"short_name"];
 		resultAddress.countryName = [AddressComponents addressComponent:@"country" inAddressArray:firstResultAddress ofType:@"long_name"];
+        resultAddress.countryCode = [AddressComponents addressComponent:@"country" inAddressArray:firstResultAddress ofType:@"short_name"];
 		
 		[delegate reverseGeocoder:self didFindAddress:resultAddress];
 	}else{

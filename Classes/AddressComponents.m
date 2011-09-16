@@ -38,7 +38,7 @@
 
 @implementation AddressComponents
 
-@synthesize title, fullAddress, streetNumber, route, city, stateCode, postalCode, countryName, coordinate;
+@synthesize title, fullAddress, streetNumber, route, city, stateCode, postalCode, countryName, countryCode, coordinate, street;
 
 
 /*
