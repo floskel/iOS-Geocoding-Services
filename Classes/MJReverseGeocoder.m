@@ -83,8 +83,9 @@
             resultAddress.postalCode = [AddressComponents addressComponent:@"postal_code" inAddressArray:firstResultAddress ofType:@"short_name"];
             resultAddress.countryName = [AddressComponents addressComponent:@"country" inAddressArray:firstResultAddress ofType:@"long_name"];
             resultAddress.countryCode = [AddressComponents addressComponent:@"country" inAddressArray:firstResultAddress ofType:@"short_name"];
-            
-            [delegate reverseGeocoder:self didFindAddress:resultAddress];
+            dispatch_async(dispatch_get_main_queue(), ^(){
+                [delegate reverseGeocoder:self didFindAddress:resultAddress];                
+            });
         }else{
             //if status code is not OK
             NSError *error = nil;
@@ -105,10 +106,10 @@
             {
                 error = [NSError errorWithDomain:@"MJGeocoderError" code:4 userInfo:nil];
             }
-            
-            [delegate reverseGeocoder:self didFailWithError:error];
+            dispatch_async(dispatch_get_main_queue(), ^(){
+                [delegate reverseGeocoder:self didFailWithError:error];                
+            });
         }
-        
     });
 }
 
